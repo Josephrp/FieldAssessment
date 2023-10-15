@@ -59,7 +59,7 @@ if len(audio) > 0:
   
         st.text("Sending image and request to the model. Please wait...")  
         # Define the LLavA Client  
-        client = Client(src=gradio_server_url, api_token=token)  
+        client = Client(src=gradio_server_url)  
         result_llava = client.predict(  
             transcript,  
             temp_image_path,  
