@@ -30,7 +30,7 @@ if len(audio) > 0:
 
     if submit_button:
         # Audio recording must be converted first before feeding it to Whisper
-        converted = np.array(audio.get_array_of_samples(), dtype=np.float32).reshape((-1, audio.channels)
+        converted = np.array(audio.get_array_of_samples(), dtype=np.float32).reshape((-1, audio.channels))
 
         result = model.transcribe(converted)
         st.info("Transcribing...")
