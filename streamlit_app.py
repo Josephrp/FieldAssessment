@@ -48,7 +48,7 @@ if len(audio) > 0:
 
         st.text("Sending image and request to the model. Please wait...")
         # Define the LLavA Client
-        client = Client(token=token)
+        client = Client()
 
         # Sample API call to LLavA
         result_llava = client.predict(
