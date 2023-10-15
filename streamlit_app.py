@@ -6,6 +6,7 @@ import os
 import streamlit.components.v1 as components
 from gradio_client import Client
 import tempfile
+import io
 
 # Set the token as an environment variable
 os.environ["YOUR_API_TOKEN"] = "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"
@@ -21,11 +22,12 @@ image = st.camera_input("Camera input")
 audio = audiorecorder("Click to record audio", "Click to stop recording")
 
 if len(audio) > 0:
+    audio_data = audio.export().read()  # Read audio data as bytes
+    audio_bytes_io = io.BytesIO(audio_data)  # Create a BytesIO object
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as audio_file:
         audio_file_path = audio_file.name
-        with open(audio_file_path, "wb") as audio_file:
-            audio_data = audio.export()
-            audio_file.write(audio_data)
+        audio_file.write(audio_bytes_io.read())  # Write audio data to the temporary file
 
     st.audio(audio_file_path, format="audio/wav")  # Show audio only if it's recorded
 
