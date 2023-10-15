@@ -7,7 +7,7 @@ import os
 import streamlit.components.v1 as components
 
 # Set the token as an environment variable
-os.environ["YOUR_API_TOKEN"] = "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"
+os.environ["YOUR_API_TOKEN"] = "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"
 
 # Retrieve the token
 token = os.environ["YOUR_API_TOKEN"]
