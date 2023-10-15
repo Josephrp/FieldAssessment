@@ -35,11 +35,11 @@ if len(audio) > 0:
 
         st.text("Sending image and request to the model. Please wait...")
        # Sample API call to LLavA 
-       # result = client.predict(
-       #     transcript,
-       #     image,
-       #     "Crop",
-       #     fn_index=7
-       # )
-       # print(result)
+        result = client.predict(
+            transcript,
+            image,
+            "Crop",
+            fn_index=7
+        )
+        print(result)
        # The 'result' variable holds the response to use for Text-to-Speech  
