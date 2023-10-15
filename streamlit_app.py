@@ -72,7 +72,7 @@ if len(audio) > 0:
         st.json(result_llava)  
   
         # Text-to-Speech Translation  
-        tts_client = Client("https://facebook-seamless-m4t.hf.space/", api_token=token)  
+        tts_client = Client("https://facebook-seamless-m4t.hf.space/")  
         tts_result = tts_client.predict(  
             "T2ST (Text to Speech translation)",  
             result_llava,  # Replacing "howdy" with LLavA result  
