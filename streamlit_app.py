@@ -69,24 +69,7 @@ if len(audio) > 0:
   
         # Display LLavA result in a text box  
         st.subheader("LLavA Result:")  
-        st.json(result_llava)  
-  
-        # Text-to-Speech Translation  
-        tts_client = Client("https://facebook-seamless-m4t.hf.space/")  
-        tts_result = tts_client.predict(  
-            "T2ST (Text to Speech translation)",  
-            result_llava,  # Replacing "howdy" with LLavA result  
-            "english",  
-            "english"  
-        )  
-  
-        # Display TTS result in a text box  
-        st.subheader("Text-to-Speech Translation Result:")  
-        st.json(tts_result)  
-  
-        # Autoplay TTS audio  
-        audio_url = tts_result["audio_url"]  
-        st.audio(audio_url, format="audio/wav", start_time=0, key="tts_audio")  
+        st.json(result_llava)   
   
     # Add a reset button to clear the interface  
     if st.button("Reset"):  
