@@ -19,12 +19,8 @@ image = st.camera_input("Camera input")
 
 audio = audiorecorder("Click to record audio", "Click to stop recording")
 
-model = whisper.load_model("base")
-
-client = Client("https://teamtonic-llavaapi.hf.space/--replicas/5sg7p/", token)
-
 if len(audio) > 0:
-    st.audio(audio.export().read())
+    st.audio(audio.export().read(), format="audio/wav")  # Show audio only if it's recorded
 
     submit_button = st.button("Use this audio")
 
@@ -50,8 +46,10 @@ if len(audio) > 0:
             "Crop",
             fn_index=7
         )
-        st.text("LLavA result:")
-        st.write(result_llava)
+
+        # Display LLavA result in a text box
+        st.subheader("LLavA Result:")
+        st.json(result_llava)
 
         # Text-to-Speech Translation
         tts_client = Client("https://facebook-seamless-m4t.hf.space/")
@@ -61,10 +59,15 @@ if len(audio) > 0:
             "english",
             "english"
         )
-        st.text("Text-to-Speech Translation result:")
-        st.write(tts_result)
 
-        # Download and autoplay the TTS audio
-        st.text("Downloading and playing the translated audio:")
+        # Display TTS result in a text box
+        st.subheader("Text-to-Speech Translation Result:")
+        st.json(tts_result)
+
+        # Autoplay TTS audio
         audio_url = tts_result["audio_url"]
-        st.audio(audio_url, format="audio/wav", start_time=0)
+        st.audio(audio_url, format="audio/wav", start_time=0, key="tts_audio")
+
+    # Add a reset button to clear the interface
+    if st.button("Reset"):
+        st.experimental_rerun()
