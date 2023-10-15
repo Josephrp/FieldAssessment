@@ -1,10 +1,10 @@
 import streamlit as st
 import numpy as np
 from audiorecorder import audiorecorder
-from gradio_client import Client
 import whisper
 import os
 import streamlit.components.v1 as components
+from gradio_client import Client
 
 # Set the token as an environment variable
 os.environ["YOUR_API_TOKEN"] = "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"
@@ -30,28 +30,29 @@ if len(audio) > 0:
 
     if submit_button:
         # Audio recording must be converted first before feeding it to Whisper
-        converted = np.array(audio.get_array_of_samples(), dtype=np.float32).reshape((-1, audio.channels))
-        
+        converted = np.array(audio.get_array_of_samples(), dtype=np.float32).reshape((-1, audio.channels)
+
         result = model.transcribe(converted)
         st.info("Transcribing...")
-        
+
         st.success("Transcription complete")
         transcript = result['text']
-        
+
         with st.expander("See transcript"):
             st.markdown(transcript)
 
         st.text("Sending image and request to the model. Please wait...")
-        
-        # Sample API call to LLavA 
+
+        # Sample API call to LLavA
         result_llava = client.predict(
             transcript,
             image,
             "Crop",
             fn_index=7
         )
-        st.text("LLavA result: " + result_llava)
-        
+        st.text("LLavA result:")
+        st.write(result_llava)
+
         # Text-to-Speech Translation
         tts_client = Client("https://facebook-seamless-m4t.hf.space/")
         tts_result = tts_client.predict(
@@ -60,9 +61,9 @@ if len(audio) > 0:
             "english",
             "english"
         )
-        st.text("Text-to-Speech Translation result: " + tts_result)
-        
-        
+        st.text("Text-to-Speech Translation result:")
+        st.write(tts_result)
+
         # Download and autoplay the TTS audio
         st.text("Downloading and playing the translated audio:")
         audio_url = tts_result["audio_url"]
