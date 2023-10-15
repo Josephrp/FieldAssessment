@@ -22,10 +22,12 @@ audio = audiorecorder("Click to record audio", "Click to stop recording")
 
 if len(audio) > 0:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as audio_file:
-        audio_data = audio.export()
-        audio_file.write(audio_data)
+        audio_file_path = audio_file.name
+        with open(audio_file_path, "wb") as audio_file:
+            audio_data = audio.export()
+            audio_file.write(audio_data)
 
-    st.audio(audio_file.name, format="audio/wav")  # Show audio only if it's recorded
+    st.audio(audio_file_path, format="audio/wav")  # Show audio only if it's recorded
 
     submit_button = st.button("Use this audio")
 
@@ -33,7 +35,7 @@ if len(audio) > 0:
         # Load the Whisper model
         model = whisper.load_model("base")
 
-        result = model.transcribe(audio_file.name)
+        result = model.transcribe(audio_file_path)
         st.info("Transcribing...")
 
         st.success("Transcription complete")
