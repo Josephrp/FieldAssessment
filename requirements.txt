@@ -1,0 +1,6 @@
+streamlit
+openai-whisper
+fairseq2
+streamlit-audiorecorder
+seamless_communication @ git+https://github.com/facebookresearch/seamless_communication@main
+gradio_client
