@@ -26,8 +26,8 @@ image = st.camera_input("Camera input")
   
 # Write the uploaded file to a temporary file  
 with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tf:  
-    tf.write(image.read())  
-    temp_image_path = tf.name  
+    tf.write(image.read()) if image else None  # check if image is None
+    temp_image_path = tf.name if image else None  # check if image is None
   
   
 audio = audiorecorder("Click to record audio", "Click to stop recording")  
