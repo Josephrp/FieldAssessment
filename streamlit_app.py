@@ -47,6 +47,8 @@ if len(audio) > 0:
             st.markdown(transcript)
 
         st.text("Sending image and request to the model. Please wait...")
+        # Define the LLavA Client
+        client = Client(token=token)
 
         # Sample API call to LLavA
         result_llava = client.predict(
@@ -55,6 +57,7 @@ if len(audio) > 0:
             "Crop",
             fn_index=7
         )
+
 
         # Display LLavA result in a text box
         st.subheader("LLavA Result:")
