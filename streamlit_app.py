@@ -5,6 +5,7 @@ import whisper
 import os
 import streamlit.components.v1 as components
 from gradio_client import Client
+import tempfile
 
 # Set the token as an environment variable
 os.environ["YOUR_API_TOKEN"] = "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"
@@ -20,15 +21,18 @@ image = st.camera_input("Camera input")
 audio = audiorecorder("Click to record audio", "Click to stop recording")
 
 if len(audio) > 0:
-    st.audio(audio.export().read(), format="audio/wav")  # Show audio only if it's recorded
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as audio_file:
+        audio.export().save(audio_file.name)
+
+    st.audio(audio_file.name, format="audio/wav")  # Show audio only if it's recorded
 
     submit_button = st.button("Use this audio")
 
     if submit_button:
-        # Audio recording must be converted first before feeding it to Whisper
-        converted = np.array(audio.get_array_of_samples(), dtype=np.float32).reshape((-1, audio.channels))
+        # Load the Whisper model
+        model = whisper.load_model("base")
 
-        result = model.transcribe(converted)
+        result = model.transcribe(audio_file.name)
         st.info("Transcribing...")
 
         st.success("Transcription complete")
