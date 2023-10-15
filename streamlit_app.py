@@ -14,6 +14,14 @@ os.environ["YOUR_API_TOKEN"] = "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"
 # Retrieve the token
 token = os.environ["YOUR_API_TOKEN"]
 
+# Define the Gradio server URL
+gradio_server_url = "https://teamtonic-llavaapi.hf.space/--replicas/5sg7p/"
+
+# Define the LLavA Client with the Gradio server URL
+client = Client(src=gradio_server_url)
+
+# Rest of your code...
+
 st.title("Team Tonic Demo")
 st.subheader("Take a picture first and speak your request for the model")
 
