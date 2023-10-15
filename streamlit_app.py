@@ -4,7 +4,7 @@ from audiorecorder import audiorecorder
 from gradio_client import Client
 import whisper
 import os
-from IPython.display import Audio
+import streamlit.components.v1 as components
 
 # Set the token as an environment variable
 os.environ["YOUR_API_TOKEN"] = "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"
@@ -62,8 +62,8 @@ if len(audio) > 0:
         )
         st.text("Text-to-Speech Translation result: " + tts_result)
         
+        
         # Download and autoplay the TTS audio
         st.text("Downloading and playing the translated audio:")
         audio_url = tts_result["audio_url"]
-        audio = Audio(audio_url, autoplay=True)
-        st.display(audio)
+        st.audio(audio_url, format="audio/wav", start_time=0)
