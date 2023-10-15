@@ -1,11 +1,11 @@
 ---
 title: PictureAssess
-emoji: 🔥
-colorFrom: red
+emoji: 📸👀👨🏻‍🏭
+colorFrom: yellow
 colorTo: pink
 sdk: streamlit
 sdk_version: 1.27.2
-app_file: app.py
+app_file: streamlit_app.py
 pinned: false
 license: mit
 ---
