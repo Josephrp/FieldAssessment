@@ -13,7 +13,7 @@ audio = audiorecorder("Click to record audio", "Click to stop recording")
 
 model = whisper.load_model("base")
 
-client = Client("https://tonic-llava-v1.hf.space/--replicas/qj67l/", token=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)
+client = Client("https://tonic-llava-v1.hf.space/--replicas/qj67l/", token="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")
 
 if len(audio) > 0:
     st.audio(audio.export().read())
