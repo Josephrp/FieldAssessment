@@ -17,8 +17,6 @@ token = os.environ["YOUR_API_TOKEN"]
 # Define the Gradio server URL
 gradio_server_url = "https://teamtonic-llavaapi.hf.space/--replicas/5sg7p/"
 
-# Define the LLavA Client with the Gradio server URL
-client = Client(src=gradio_server_url)
 
 # Rest of your code...
 
@@ -56,7 +54,8 @@ if len(audio) > 0:
 
         st.text("Sending image and request to the model. Please wait...")
         # Define the LLavA Client
-        client = Client()
+        # Define the LLavA Client with the Gradio server URL
+        client = Client(src=gradio_server_url)
 
         # Sample API call to LLavA
         result_llava = client.predict(
