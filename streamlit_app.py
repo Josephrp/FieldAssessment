@@ -4,6 +4,14 @@ from audiorecorder import audiorecorder
 from gradio_client import Client
 import whisper
 
+import os
+
+# Set the token as an environment variable
+os.environ["YOUR_API_TOKEN"] = "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"
+
+# Retrieve the token
+token = os.environ["YOUR_API_TOKEN"]
+
 st.title("Team Tonic Demo")
 st.subheader("Take a picture first and speak your request for the model")
 
@@ -13,7 +21,7 @@ audio = audiorecorder("Click to record audio", "Click to stop recording")
 
 model = whisper.load_model("base")
 
-client = Client("https://tonic-llava-v1.hf.space/--replicas/qj67l/", token="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")
+client = Client("https://tonic-llava-v1.hf.space/--replicas/qj67l/", token)
 
 if len(audio) > 0:
     st.audio(audio.export().read())
