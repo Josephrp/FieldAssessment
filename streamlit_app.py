@@ -70,7 +70,7 @@ if len(audio) > 0:
             transcript,  
             temp_image_path,  
             "Default",  
-            fn_index=7  
+            fn_index=9  
         )  
   
         # Display LLavA result in a text box  
