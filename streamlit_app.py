@@ -17,7 +17,7 @@ os.environ["YOUR_API_TOKEN"] = "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"
 token = os.environ["YOUR_API_TOKEN"]  
   
 # Define the Gradio server URL  
-gradio_server_url = "https://teamtonic-llavaapi.hf.space/--replicas/5sg7p/"  
+gradio_server_url = "https://teamtonic-llavaapi.hf.space/--replicas/kr8cw/"  
   
 st.title("Assess This Picture")  
 st.subheader("Take a picture first then ask a question & more!")  
