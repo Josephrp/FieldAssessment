@@ -8,7 +8,13 @@ from gradio_client import Client
 import tempfile  
 import io  
 import tempfile    
-  
+
+
+# Initialize your variables at the start of the script  
+image = None  
+audio = None  
+transcript = None  
+result_llava = None  
   
 # Set the token as an environment variable  
 os.environ["YOUR_API_TOKEN"] = "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"  
