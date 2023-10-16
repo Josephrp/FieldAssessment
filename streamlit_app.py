@@ -69,7 +69,7 @@ if len(audio) > 0:
         result_llava = client.predict(  
             transcript,  
             temp_image_path,  
-            "Crop",  
+            "Default",  
             fn_index=7  
         )  
   
